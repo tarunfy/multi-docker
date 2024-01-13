@@ -13,3 +13,10 @@ after_success:
   - docker build -t tarunfy/multi-nginx ./nginx
   - docker build -t tarunfy/multi-server ./server
   - docker build -t tarunfy/multi-worker ./worker
+  #Login to docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push tarunfy/multi-client
+  - docker push tarunfy/multi-nginx
+  - docker push tarunfy/multi-server
+  - docker push tarunfy/multi-worker
